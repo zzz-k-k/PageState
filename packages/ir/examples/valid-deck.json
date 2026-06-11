@@ -1,0 +1,165 @@
+{
+  "schemaVersion": "0.1.0",
+  "type": "deck",
+  "id": "ai_native_html_presentation",
+  "title": "AI Native HTML Presentation Workbench",
+  "description": "A local-first, AI-native workbench for web-native presentations.",
+  "theme": {
+    "id": "modern_product",
+    "name": "Modern Product",
+    "tokens": {
+      "colors": {
+        "color.background": "#f8fafc",
+        "color.surface": "#ffffff",
+        "color.text.primary": "#0f172a",
+        "color.text.muted": "#475569",
+        "color.accent": "#2563eb"
+      },
+      "fonts": {
+        "font.heading": "Inter",
+        "font.body": "Inter"
+      },
+      "spacing": {
+        "space.slide.x": 96,
+        "space.slide.y": 72,
+        "space.block.gap": 24
+      },
+      "radii": {
+        "radius.card": 8
+      }
+    }
+  },
+  "slides": [
+    {
+      "id": "slide_001",
+      "type": "hero",
+      "title": "重新定义演示文稿",
+      "layout": {
+        "type": "centered",
+        "gap": 24,
+        "padding": 96
+      },
+      "blocks": [
+        {
+          "id": "title",
+          "type": "heading",
+          "level": 1,
+          "text": "重新定义 AI 时代的演示文稿",
+          "style": {
+            "align": "center",
+            "colorToken": "color.text.primary"
+          }
+        },
+        {
+          "id": "subtitle",
+          "type": "paragraph",
+          "text": "用 HTML、组件和 Skill 构建可编排的 presentation workbench",
+          "style": {
+            "align": "center",
+            "colorToken": "color.text.muted"
+          }
+        }
+      ],
+      "animations": [
+        {
+          "targetBlockId": "title",
+          "type": "fade-up",
+          "trigger": "enter",
+          "order": 0
+        },
+        {
+          "targetBlockId": "subtitle",
+          "type": "fade-up",
+          "trigger": "enter",
+          "order": 1
+        }
+      ],
+      "notes": {
+        "speaker": "开场先强调：这不是 PPT 替代品，而是网页原生表达系统。"
+      },
+      "sourceSkill": {
+        "id": "quote_hero",
+        "version": "0.1.0"
+      }
+    },
+    {
+      "id": "slide_002",
+      "type": "comparison",
+      "title": "为什么不是直接生成 PPT",
+      "layout": {
+        "type": "two-column",
+        "gap": 32,
+        "padding": 80,
+        "columns": 2
+      },
+      "blocks": [
+        {
+          "id": "legacy",
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "PPTX 结构封闭",
+            "AI 难以稳定修改版式",
+            "交互和网页表达能力有限"
+          ]
+        },
+        {
+          "id": "web_native",
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "HTML 天然结构化",
+            "组件、状态、数据可组合",
+            "更适合 AI 读取和重组"
+          ]
+        }
+      ],
+      "animations": [],
+      "notes": {
+        "speaker": "用左右对比解释为什么本项目不以 PPTX 作为真相源。"
+      }
+    },
+    {
+      "id": "slide_003",
+      "type": "chart",
+      "title": "MVP 聚焦范围",
+      "layout": {
+        "type": "chart",
+        "gap": 24,
+        "padding": 80
+      },
+      "blocks": [
+        {
+          "id": "mvp_chart",
+          "type": "chart",
+          "chartType": "bar",
+          "title": "Phase 1 Priorities",
+          "data": {
+            "columns": ["Capability", "Priority"],
+            "rows": [
+              ["Deck IR", 5],
+              ["Reveal Renderer", 5],
+              ["Visual Editing", 4],
+              ["PDF Export", 4],
+              ["PPTX Import", 1]
+            ]
+          }
+        }
+      ],
+      "animations": []
+    }
+  ],
+  "exportConfig": {
+    "aspectRatio": "16:9",
+    "width": 1920,
+    "height": 1080,
+    "formats": ["html", "pdf", "png"]
+  },
+  "metadata": {
+    "locale": "zh-CN",
+    "author": "PageState",
+    "tags": ["ai", "presentation", "html"],
+    "createdAt": "2026-06-11T00:00:00.000Z",
+    "updatedAt": "2026-06-11T00:00:00.000Z"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "0.1.0",
+  "type": "deck",
+  "id": "1-invalid-id",
+  "title": "",
+  "theme": "modern_product",
+  "slides": [
+    {
+      "id": "slide_001",
+      "type": "hero",
+      "layout": {
+        "type": "unknown-layout"
+      },
+      "blocks": [
+        {
+          "id": "title",
+          "type": "heading"
+        }
+      ]
+    }
+  ]
+}
