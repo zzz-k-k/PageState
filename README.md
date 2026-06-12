@@ -2,6 +2,8 @@
 
 AI-native presentations, built as structured web projects instead of closed slide files.
 
+[中文 README](README.zh-CN.md)
+
 PageState is an experimental local-first workbench for creating, editing, rendering, and eventually exporting web-native presentations. Its core idea is simple: the source of truth should be structured `deck.json` data, not hand-written HTML or a binary PowerPoint file.
 
 ## Why This Exists
@@ -197,11 +199,7 @@ Generated HTML is output, not the source of truth.
 
 ## Development Notes
 
-Useful docs in this repo:
-
-- `tech-stack-and-mvp-plan.md`
-- `step-1-3-code-reading-guide.md`
-- `ai-native-html-presentation-project.md`
+Long-form local planning notes live under `docs/` during development and are intentionally not committed.
 
 ## License
 
