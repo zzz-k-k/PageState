@@ -16,9 +16,23 @@ export {
   ListBlockSchema,
   ParagraphBlockSchema,
   QuoteBlockSchema,
+  RendererHintsSchema,
+  RevealSlideHintsSchema,
   SlideSchema,
   SpeakerNotesSchema,
   ThemeSchema
 } from "./deck-schema.js";
 
-export type { Animation, Block, BlockStyle, Deck, ExportConfig, Frame, Layout, Slide, Theme } from "./deck-schema.js";
+export type {
+  Animation,
+  Block,
+  BlockStyle,
+  Deck,
+  ExportConfig,
+  Frame,
+  Layout,
+  RendererHints,
+  RevealSlideHints,
+  Slide,
+  Theme
+} from "./deck-schema.js";

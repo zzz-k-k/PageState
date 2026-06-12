@@ -140,6 +140,25 @@ export const SpeakerNotesSchema = z
   })
   .strict();
 
+const RendererAttributeValueSchema = z.union([z.string(), z.number(), z.boolean()]);
+
+export const RevealSlideHintsSchema = z
+  .object({
+    transition: z.enum(["none", "fade", "slide", "convex", "concave", "zoom"]).optional(),
+    backgroundColor: z.string().min(1).optional(),
+    backgroundImage: z.string().min(1).optional(),
+    backgroundVideo: z.string().min(1).optional(),
+    autoAnimate: z.boolean().optional(),
+    sectionAttributes: z.record(z.string().min(1), RendererAttributeValueSchema).default({})
+  })
+  .strict();
+
+export const RendererHintsSchema = z
+  .object({
+    reveal: RevealSlideHintsSchema.optional()
+  })
+  .strict();
+
 export const SlideSchema = z
   .object({
     id: IdSchema,
@@ -161,6 +180,7 @@ export const SlideSchema = z
     blocks: z.array(BlockSchema).min(1),
     animations: z.array(AnimationSchema).default([]),
     notes: SpeakerNotesSchema.optional(),
+    rendererHints: RendererHintsSchema.optional(),
     sourceSkill: z
       .object({
         id: IdSchema,
@@ -236,3 +256,5 @@ export type Frame = z.infer<typeof FrameSchema>;
 export type BlockStyle = z.infer<typeof BlockStyleSchema>;
 export type Layout = z.infer<typeof LayoutSchema>;
 export type Animation = z.infer<typeof AnimationSchema>;
+export type RendererHints = z.infer<typeof RendererHintsSchema>;
+export type RevealSlideHints = z.infer<typeof RevealSlideHintsSchema>;

@@ -940,6 +940,65 @@
               },
               "additionalProperties": false
             },
+            "rendererHints": {
+              "type": "object",
+              "properties": {
+                "reveal": {
+                  "type": "object",
+                  "properties": {
+                    "transition": {
+                      "type": "string",
+                      "enum": [
+                        "none",
+                        "fade",
+                        "slide",
+                        "convex",
+                        "concave",
+                        "zoom"
+                      ]
+                    },
+                    "backgroundColor": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "backgroundImage": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "backgroundVideo": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "autoAnimate": {
+                      "type": "boolean"
+                    },
+                    "sectionAttributes": {
+                      "default": {},
+                      "type": "object",
+                      "propertyNames": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "additionalProperties": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "number"
+                          },
+                          {
+                            "type": "boolean"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            },
             "sourceSkill": {
               "type": "object",
               "properties": {

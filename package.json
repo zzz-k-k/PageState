@@ -6,9 +6,10 @@
     "packages/*"
   ],
   "scripts": {
-    "test": "npm run build --workspace @pagestate/ir && npm run test --workspace @pagestate/ir && npm run test --workspace @pagestate/commands",
-    "build": "npm run build --workspace @pagestate/ir && npm run build --workspace @pagestate/commands",
-    "build:schema": "npm run build:schema --workspace @pagestate/ir && npm run build:schema --workspace @pagestate/commands"
+    "test": "npm run build --workspace @pagestate/ir && npm run test --workspace @pagestate/ir && npm run test --workspace @pagestate/commands && npm run test --workspace @pagestate/renderer-reveal",
+    "build": "npm run build --workspace @pagestate/ir && npm run build --workspace @pagestate/commands && npm run build --workspace @pagestate/renderer-reveal",
+    "build:schema": "npm run build:schema --workspace @pagestate/ir && npm run build:schema --workspace @pagestate/commands",
+    "render:example": "npm run render:example --workspace @pagestate/renderer-reveal"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",

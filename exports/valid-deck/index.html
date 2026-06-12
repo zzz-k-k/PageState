@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Native HTML Presentation Workbench</title>
+  <link rel="stylesheet" href="./reveal/reset.css" />
+  <link rel="stylesheet" href="./reveal/reveal.css" />
+  <link rel="stylesheet" href="./reveal/theme/white.css" />
+  <style>
+    :root {
+      --color-background: #f8fafc;
+      --color-surface: #ffffff;
+      --color-text-primary: #0f172a;
+      --color-text-muted: #475569;
+      --color-accent: #2563eb;
+      --font-heading: Inter;
+      --font-body: Inter;
+      --space-slide-x: 96px;
+      --space-slide-y: 72px;
+      --space-block-gap: 24px;
+      --radius-card: 8px;
+    }
+    .pagestate-deck { color: var(--color-text-primary, #0f172a); background: var(--color-background, #f8fafc); }
+    .pagestate-slide { position: relative; padding: var(--pagestate-layout-padding); box-sizing: border-box; }
+    .pagestate-slide.layout-centered { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--pagestate-layout-gap); }
+    .pagestate-slide.layout-stack { display: flex; flex-direction: column; gap: var(--pagestate-layout-gap); }
+    .pagestate-slide.layout-two-column, .pagestate-slide.layout-grid { display: grid; grid-template-columns: repeat(var(--pagestate-layout-columns, 2), minmax(0, 1fr)); gap: var(--pagestate-layout-gap); align-items: center; }
+    .pagestate-block { box-sizing: border-box; }
+    .pagestate-block.block-heading, .pagestate-slide h1, .pagestate-slide h2, .pagestate-slide h3 { font-family: var(--font-heading, Inter, Arial, sans-serif); letter-spacing: 0; }
+    .pagestate-slide p, .pagestate-slide li, .pagestate-slide blockquote, .pagestate-slide table { font-family: var(--font-body, Inter, Arial, sans-serif); }
+    .pagestate-slide h1 { font-size: 2.4em; line-height: 1.05; }
+    .pagestate-slide h2 { font-size: 1.7em; line-height: 1.1; }
+    .pagestate-slide h3 { font-size: 1.25em; line-height: 1.2; }
+    .pagestate-slide p { color: var(--color-text-muted, #475569); }
+    .pagestate-slide img { max-width: 100%; max-height: 100%; object-fit: contain; }
+    .pagestate-chart-table { width: 100%; border-collapse: collapse; font-size: 0.55em; }
+    .pagestate-chart-table th, .pagestate-chart-table td { border-bottom: 1px solid rgba(15, 23, 42, 0.16); padding: 0.45em 0.6em; text-align: left; }
+    .pagestate-chart-table th { color: var(--color-text-primary, #0f172a); font-weight: 700; }
+    .pagestate-anim-fade-up { transform: translateY(12px); }
+  </style>
+</head>
+<body>
+  <div class="reveal pagestate-deck">
+    <div class="slides">
+      <section data-slide-id="slide_001" data-slide-type="hero" class="pagestate-slide pagestate-slide-hero layout-centered" style="--pagestate-layout-gap: 24px; --pagestate-layout-padding: 96px">
+        <h1 data-block-id="title" class="pagestate-block block-heading" style="text-align: center; color: var(--color-text-primary)">重新定义 AI 时代的演示文稿</h1>
+        <p data-block-id="subtitle" class="pagestate-block block-paragraph" style="text-align: center; color: var(--color-text-muted)">用 HTML、组件和 Skill 构建可编排的 presentation workbench</p>
+        <aside class="notes">
+开场先强调：这不是 PPT 替代品，而是网页原生表达系统。
+        </aside>
+      </section>
+      <section data-slide-id="slide_002" data-slide-type="comparison" class="pagestate-slide pagestate-slide-comparison layout-two-column" style="--pagestate-layout-gap: 32px; --pagestate-layout-padding: 80px; --pagestate-layout-columns: 2">
+        <ul data-block-id="legacy" class="pagestate-block block-list"><li>PPTX 结构封闭</li><li>AI 难以稳定修改版式</li><li>交互和网页表达能力有限</li></ul>
+        <ul data-block-id="web_native" class="pagestate-block block-list"><li>HTML 天然结构化</li><li>组件、状态、数据可组合</li><li>更适合 AI 读取和重组</li></ul>
+        <aside class="notes">
+用左右对比解释为什么本项目不以 PPTX 作为真相源。
+        </aside>
+      </section>
+      <section data-slide-id="slide_003" data-slide-type="chart" class="pagestate-slide pagestate-slide-chart layout-chart" style="--pagestate-layout-gap: 24px; --pagestate-layout-padding: 80px">
+        <figure data-block-id="mvp_chart" class="pagestate-block block-chart"><figcaption>Phase 1 Priorities</figcaption><table class="pagestate-chart-table"><thead><tr><th>Capability</th><th>Priority</th></tr></thead><tbody><tr><td>Deck IR</td><td>5</td></tr><tr><td>Reveal Renderer</td><td>5</td></tr><tr><td>Visual Editing</td><td>4</td></tr><tr><td>PDF Export</td><td>4</td></tr><tr><td>PPTX Import</td><td>1</td></tr></tbody></table></figure>
+      </section>
+    </div>
+  </div>
+  <script src="./reveal/reveal.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      controls: true,
+      progress: true,
+      slideNumber: true,
+      center: false,
+      width: 1920,
+      height: 1080,
+      margin: 0.04
+    });
+  </script>
+</body>
+</html>
