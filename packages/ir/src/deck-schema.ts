@@ -12,7 +12,7 @@ const TokenRefSchema = z
   .min(1)
   .regex(/^[a-zA-Z][a-zA-Z0-9_.-]*$/, "Use token names such as color.text.primary.");
 
-const FrameSchema = z
+export const FrameSchema = z
   .object({
     x: z.number(),
     y: z.number(),
@@ -22,7 +22,7 @@ const FrameSchema = z
   })
   .strict();
 
-const BlockStyleSchema = z
+export const BlockStyleSchema = z
   .object({
     variant: z.string().min(1).optional(),
     align: z.enum(["left", "center", "right"]).optional(),
@@ -40,24 +40,24 @@ const BlockBaseSchema = z
   })
   .strict();
 
-const HeadingBlockSchema = BlockBaseSchema.extend({
+export const HeadingBlockSchema = BlockBaseSchema.extend({
   type: z.literal("heading"),
   text: z.string().min(1),
   level: z.union([z.literal(1), z.literal(2), z.literal(3)]).default(1)
 }).strict();
 
-const ParagraphBlockSchema = BlockBaseSchema.extend({
+export const ParagraphBlockSchema = BlockBaseSchema.extend({
   type: z.literal("paragraph"),
   text: z.string().min(1)
 }).strict();
 
-const ListBlockSchema = BlockBaseSchema.extend({
+export const ListBlockSchema = BlockBaseSchema.extend({
   type: z.literal("list"),
   ordered: z.boolean().default(false),
   items: z.array(z.string().min(1)).min(1)
 }).strict();
 
-const ImageSourceSchema = z.discriminatedUnion("kind", [
+export const ImageSourceSchema = z.discriminatedUnion("kind", [
   z
     .object({
       kind: z.literal("asset"),
@@ -72,34 +72,34 @@ const ImageSourceSchema = z.discriminatedUnion("kind", [
     .strict()
 ]);
 
-const ImageBlockSchema = BlockBaseSchema.extend({
+export const ImageBlockSchema = BlockBaseSchema.extend({
   type: z.literal("image"),
   source: ImageSourceSchema,
   alt: z.string().min(1),
   caption: z.string().optional()
 }).strict();
 
-const QuoteBlockSchema = BlockBaseSchema.extend({
+export const QuoteBlockSchema = BlockBaseSchema.extend({
   type: z.literal("quote"),
   text: z.string().min(1),
   attribution: z.string().optional()
 }).strict();
 
-const ChartDataSchema = z
+export const ChartDataSchema = z
   .object({
     columns: z.array(z.string().min(1)).min(1),
     rows: z.array(z.array(z.union([z.string(), z.number(), z.null()]))).min(1)
   })
   .strict();
 
-const ChartBlockSchema = BlockBaseSchema.extend({
+export const ChartBlockSchema = BlockBaseSchema.extend({
   type: z.literal("chart"),
   chartType: z.enum(["bar", "line", "area", "pie", "scatter"]),
   title: z.string().optional(),
   data: ChartDataSchema
 }).strict();
 
-const CodeBlockSchema = BlockBaseSchema.extend({
+export const CodeBlockSchema = BlockBaseSchema.extend({
   type: z.literal("code"),
   language: z.string().min(1),
   code: z.string().min(1)
@@ -232,3 +232,7 @@ export type Slide = z.infer<typeof SlideSchema>;
 export type Block = z.infer<typeof BlockSchema>;
 export type Theme = z.infer<typeof ThemeSchema>;
 export type ExportConfig = z.infer<typeof ExportConfigSchema>;
+export type Frame = z.infer<typeof FrameSchema>;
+export type BlockStyle = z.infer<typeof BlockStyleSchema>;
+export type Layout = z.infer<typeof LayoutSchema>;
+export type Animation = z.infer<typeof AnimationSchema>;

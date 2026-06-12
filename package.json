@@ -6,8 +6,9 @@
     "packages/*"
   ],
   "scripts": {
-    "test": "npm run test --workspace @pagestate/ir",
-    "build:schema": "npm run build:schema --workspace @pagestate/ir"
+    "test": "npm run build --workspace @pagestate/ir && npm run test --workspace @pagestate/ir && npm run test --workspace @pagestate/commands",
+    "build": "npm run build --workspace @pagestate/ir && npm run build --workspace @pagestate/commands",
+    "build:schema": "npm run build:schema --workspace @pagestate/ir && npm run build:schema --workspace @pagestate/commands"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",
