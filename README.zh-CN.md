@@ -4,6 +4,8 @@
 
 [English README](README.md)
 
+在线演示：[https://zzz-k-k.github.io/PageState/](https://zzz-k-k.github.io/PageState/)
+
 PageState 是一个早期实验中的本地优先演示文稿工作台。它的核心想法是：演示文稿的真相源不应该是手写 HTML，也不应该是二进制 PPT 文件，而应该是一份结构化、可校验、可编辑的 `deck.json`。
 
 ## 为什么做这个项目
@@ -146,29 +148,6 @@ npm run render:example
 exports/valid-deck/index.html
 ```
 
-## Demo 展示方案
-
-当前 demo 是由 Deck IR 生成的静态 reveal.js 演示：
-
-```txt
-exports/valid-deck/index.html
-```
-
-GitHub Pages 很适合当前阶段，因为 demo 输出就是普通静态 HTML、CSS 和 JavaScript。
-
-短期推荐：
-
-- 用 GitHub Actions 运行 `npm run render:example`
-- 把 `exports/valid-deck` 作为 Pages artifact 发布
-- README 负责介绍项目，GitHub Pages 负责展示可播放 demo
-
-后续推荐：
-
-- 增加一个 demo gallery
-- 首页展示项目介绍
-- 挂多个由 Deck IR 生成的演示
-- 每个 demo 仍然保持静态导出
-
 ## 核心原则
 
 PageState 把演示文稿看成结构化、可编辑、可渲染的项目：
@@ -178,10 +157,6 @@ AI 和用户修改 Deck IR。
 渲染器生成 HTML 和未来更多导出格式。
 生成的 HTML 是输出物，不是真相源。
 ```
-
-## 开发说明
-
-长篇规划、学习笔记和阶段性解释文档放在本地 `docs/` 目录中。该目录用于本地开发阅读，默认不提交到仓库。
 
 ## License
 

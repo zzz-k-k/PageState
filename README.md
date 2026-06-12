@@ -4,6 +4,8 @@ AI-native presentations, built as structured web projects instead of closed slid
 
 [中文 README](README.zh-CN.md)
 
+Live demo: [https://zzz-k-k.github.io/PageState/](https://zzz-k-k.github.io/PageState/)
+
 PageState is an experimental local-first workbench for creating, editing, rendering, and eventually exporting web-native presentations. Its core idea is simple: the source of truth should be structured `deck.json` data, not hand-written HTML or a binary PowerPoint file.
 
 ## Why This Exists
@@ -146,47 +148,6 @@ Then open:
 exports/valid-deck/index.html
 ```
 
-## Demo Strategy
-
-The current demo is a static reveal.js presentation generated from Deck IR:
-
-```txt
-exports/valid-deck/index.html
-```
-
-GitHub Pages is a good fit for this stage because the demo output is plain static HTML, CSS, and JavaScript. The simplest public demo strategy is:
-
-```txt
-npm run render:example
-  -> publish exports/valid-deck/
-  -> GitHub Pages serves index.html
-```
-
-Recommended short-term setup:
-
-- Deploy `exports/valid-deck` directly as the GitHub Pages site.
-- Make the live demo URL the primary link in this README.
-- Keep the repository README focused on the project architecture.
-
-Recommended later setup:
-
-- Create a small docs/demo site.
-- Add a landing page with project overview.
-- Add links to multiple generated decks.
-- Keep each demo deck as a static export.
-
-## GitHub Pages Deployment Idea
-
-A future GitHub Actions workflow can:
-
-1. Install dependencies.
-2. Run tests.
-3. Run `npm run render:example`.
-4. Upload `exports/valid-deck` as the Pages artifact.
-5. Deploy it to GitHub Pages.
-
-This keeps the demo reproducible: GitHub builds the deck from the checked-in Deck IR instead of relying on a manually uploaded HTML file.
-
 ## Core Principle
 
 PageState treats presentations as structured, editable, renderable projects:
@@ -196,10 +157,6 @@ AI and users edit Deck IR.
 Renderers produce HTML and future export formats.
 Generated HTML is output, not the source of truth.
 ```
-
-## Development Notes
-
-Long-form local planning notes live under `docs/` during development and are intentionally not committed.
 
 ## License
 
