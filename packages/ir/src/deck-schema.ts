@@ -55,10 +55,10 @@ const BlockBaseSchema = z
 
 // 标题块。用于页面主标题、副标题或小标题，level 决定渲染成 h1/h2/h3。
 export const HeadingBlockSchema = BlockBaseSchema.extend({
-  type: z.literal("heading"),
+  type: z.literal("heading"),//literal表示字段只能是括号中的固定值，用于身份验证
   text: z.string().min(1),
-  level: z.union([z.literal(1), z.literal(2), z.literal(3)]).default(1)
-}).strict();
+  level: z.union([z.literal(1), z.literal(2), z.literal(3)]).default(1)//default表示如果没有输入level自动补成1
+}).strict();//union表示允许符合任意一种规则
 
 // 段落块。用于普通正文说明，是最基础的文本内容块。
 export const ParagraphBlockSchema = BlockBaseSchema.extend({
@@ -84,7 +84,7 @@ export const ImageSourceSchema = z.discriminatedUnion("kind", [
   z
     .object({
       kind: z.literal("url"),
-      url: z.string().url()
+      url: z.string().url()//只能是url
     })
     .strict()
 ]);
@@ -94,7 +94,7 @@ export const ImageBlockSchema = BlockBaseSchema.extend({
   type: z.literal("image"),
   source: ImageSourceSchema,
   alt: z.string().min(1),
-  caption: z.string().optional()
+  caption: z.string().optional()//optional表示字段可以不写
 }).strict();
 
 // 引用块。用于展示一句话观点、人物引言或强调语，可选 attribution 表示出处或作者。
@@ -192,7 +192,7 @@ export const RendererHintsSchema = z
 export const SlideSchema = z
   .object({
     id: IdSchema,
-    type: z.enum([
+    type: z.enum([//enum中是字符串选项
       "hero",
       "section",
       "two-column",
@@ -282,7 +282,7 @@ export const DeckSchema = z
   .strict();
 
 // 下面这些 type 是从 Zod schema 自动推导出来的 TypeScript 类型，供其他包在写代码时获得类型提示和类型检查。
-export type Deck = z.infer<typeof DeckSchema>;
+export type Deck = z.infer<typeof DeckSchema>;//infer用于自动从zodschema推导成ts类型
 export type Slide = z.infer<typeof SlideSchema>;
 export type Block = z.infer<typeof BlockSchema>;
 export type Theme = z.infer<typeof ThemeSchema>;
@@ -293,3 +293,4 @@ export type Layout = z.infer<typeof LayoutSchema>;
 export type Animation = z.infer<typeof AnimationSchema>;
 export type RendererHints = z.infer<typeof RendererHintsSchema>;
 export type RevealSlideHints = z.infer<typeof RevealSlideHintsSchema>;
+//deckschema是校验器对象，通过DeckSchema.parse(data);来检验数据是否合法，deck才是真正的数据类型

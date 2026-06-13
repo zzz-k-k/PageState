@@ -6,10 +6,11 @@
     "packages/*"
   ],
   "scripts": {
-    "test": "npm run build --workspace @pagestate/ir && npm run test --workspace @pagestate/ir && npm run test --workspace @pagestate/commands && npm run test --workspace @pagestate/renderer-reveal",
-    "build": "npm run build --workspace @pagestate/ir && npm run build --workspace @pagestate/commands && npm run build --workspace @pagestate/renderer-reveal",
-    "build:schema": "npm run build:schema --workspace @pagestate/ir && npm run build:schema --workspace @pagestate/commands",
-    "render:example": "npm run render:example --workspace @pagestate/renderer-reveal"
+    "test": "npm run build --workspace @pagestate/ir && npm run test --workspace @pagestate/ir && npm run build --workspace @pagestate/templates && npm run test --workspace @pagestate/templates && npm run test --workspace @pagestate/commands && npm run test --workspace @pagestate/renderer-reveal",
+    "build": "npm run build --workspace @pagestate/ir && npm run build --workspace @pagestate/templates && npm run build --workspace @pagestate/commands && npm run build --workspace @pagestate/renderer-reveal",
+    "build:schema": "npm run build:schema --workspace @pagestate/ir && npm run build:schema --workspace @pagestate/commands && npm run build:schema --workspace @pagestate/templates",
+    "render:example": "npm run render:example --workspace @pagestate/renderer-reveal",
+    "render:templates": "npm run demo:write --workspace @pagestate/templates && npm run render:deck --workspace @pagestate/renderer-reveal -- packages/templates/examples/template-demo-deck.json exports/template-demo"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",

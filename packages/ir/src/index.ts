@@ -1,4 +1,4 @@
-export {
+export {//统一导出
   AnimationSchema,
   BlockSchema,
   BlockStyleSchema,
