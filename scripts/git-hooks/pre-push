@@ -1,0 +1,44 @@
+#!/bin/sh
+
+set -eu
+
+if [ "${PAGESTATE_SKIP_PRIVATE_DOCS_HOOK:-}" = "1" ]; then
+  exit 0
+fi
+
+ROOT="$(git rev-parse --show-toplevel)"
+PRIVATE_DOCS_DIR="$(git config --get pagestate.privateDocsDir || true)"
+
+if [ -z "$PRIVATE_DOCS_DIR" ]; then
+  PRIVATE_DOCS_DIR="docs-private"
+fi
+
+case "$PRIVATE_DOCS_DIR" in
+  /*|?:/*) PRIVATE_REPO="$PRIVATE_DOCS_DIR" ;;
+  *) PRIVATE_REPO="$ROOT/$PRIVATE_DOCS_DIR" ;;
+esac
+
+if [ ! -d "$PRIVATE_REPO/.git" ]; then
+  exit 0
+fi
+
+if [ -n "$(git -C "$PRIVATE_REPO" status --porcelain)" ]; then
+  echo "Private docs have uncommitted changes. Commit them before pushing the public repo." >&2
+  exit 1
+fi
+
+if ! git -C "$PRIVATE_REPO" rev-parse --verify HEAD >/dev/null 2>&1; then
+  echo "Private docs repo has no commits yet. Create its first commit before pushing the public repo." >&2
+  exit 1
+fi
+
+if git -C "$PRIVATE_REPO" rev-parse --abbrev-ref --symbolic-full-name "@{u}" >/dev/null 2>&1; then
+  git -C "$PRIVATE_REPO" push </dev/null
+else
+  if ! git -C "$PRIVATE_REPO" remote get-url origin >/dev/null 2>&1; then
+    echo "Private docs repo has no upstream and no origin remote. Add a private GitHub remote first." >&2
+    exit 1
+  fi
+
+  git -C "$PRIVATE_REPO" push -u origin HEAD </dev/null
+fi
