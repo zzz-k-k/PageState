@@ -11,7 +11,8 @@
         },
         "speakerNotes": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 260
         },
         "template": {
           "type": "string",
@@ -19,15 +20,18 @@
         },
         "eyebrow": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 80
         },
         "title": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 80
         },
         "subtitle": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 160
         }
       },
       "required": [
@@ -47,7 +51,8 @@
         },
         "speakerNotes": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 260
         },
         "template": {
           "type": "string",
@@ -55,15 +60,18 @@
         },
         "sectionNumber": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 80
         },
         "title": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 80
         },
         "subtitle": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 160
         }
       },
       "required": [
@@ -83,7 +91,8 @@
         },
         "speakerNotes": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 260
         },
         "template": {
           "type": "string",
@@ -91,26 +100,31 @@
         },
         "title": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 80
         },
         "left": {
           "type": "object",
           "properties": {
             "heading": {
               "type": "string",
-              "minLength": 1
+              "minLength": 1,
+              "maxLength": 80
             },
             "body": {
               "type": "string",
-              "minLength": 1
+              "minLength": 1,
+              "maxLength": 160
             },
             "items": {
               "default": [],
               "minItems": 1,
+              "maxItems": 5,
               "type": "array",
               "items": {
                 "type": "string",
-                "minLength": 1
+                "minLength": 1,
+                "maxLength": 110
               }
             }
           },
@@ -124,19 +138,23 @@
           "properties": {
             "heading": {
               "type": "string",
-              "minLength": 1
+              "minLength": 1,
+              "maxLength": 80
             },
             "body": {
               "type": "string",
-              "minLength": 1
+              "minLength": 1,
+              "maxLength": 160
             },
             "items": {
               "default": [],
               "minItems": 1,
+              "maxItems": 5,
               "type": "array",
               "items": {
                 "type": "string",
-                "minLength": 1
+                "minLength": 1,
+                "maxLength": 110
               }
             }
           },
@@ -165,7 +183,8 @@
         },
         "speakerNotes": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 260
         },
         "template": {
           "type": "string",
@@ -173,7 +192,8 @@
         },
         "title": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 80
         },
         "items": {
           "minItems": 2,
@@ -184,14 +204,17 @@
             "properties": {
               "label": {
                 "type": "string",
-                "minLength": 1
+                "minLength": 1,
+                "maxLength": 80
               },
               "points": {
                 "minItems": 1,
+                "maxItems": 5,
                 "type": "array",
                 "items": {
                   "type": "string",
-                  "minLength": 1
+                  "minLength": 1,
+                  "maxLength": 110
                 }
               }
             },
@@ -221,7 +244,8 @@
         },
         "speakerNotes": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 260
         },
         "template": {
           "type": "string",
@@ -229,7 +253,8 @@
         },
         "title": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 80
         },
         "events": {
           "minItems": 2,
@@ -240,11 +265,13 @@
             "properties": {
               "label": {
                 "type": "string",
-                "minLength": 1
+                "minLength": 1,
+                "maxLength": 80
               },
               "description": {
                 "type": "string",
-                "minLength": 1
+                "minLength": 1,
+                "maxLength": 160
               }
             },
             "required": [
@@ -273,7 +300,8 @@
         },
         "speakerNotes": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 260
         },
         "template": {
           "type": "string",
@@ -281,11 +309,13 @@
         },
         "title": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 80
         },
         "chartTitle": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 80
         },
         "chartType": {
           "default": "bar",
@@ -300,21 +330,25 @@
         },
         "columns": {
           "minItems": 1,
+          "maxItems": 8,
           "type": "array",
           "items": {
             "type": "string",
-            "minLength": 1
+            "minLength": 1,
+            "maxLength": 80
           }
         },
         "rows": {
           "minItems": 1,
+          "maxItems": 12,
           "type": "array",
           "items": {
             "type": "array",
             "items": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "string",
+                  "maxLength": 80
                 },
                 {
                   "type": "number"
@@ -328,7 +362,8 @@
         },
         "insight": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 160
         }
       },
       "required": [
@@ -350,7 +385,8 @@
         },
         "speakerNotes": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 260
         },
         "template": {
           "type": "string",
@@ -358,11 +394,13 @@
         },
         "quote": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 160
         },
         "attribution": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 80
         }
       },
       "required": [
@@ -382,7 +420,8 @@
         },
         "speakerNotes": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 260
         },
         "template": {
           "type": "string",
@@ -390,11 +429,13 @@
         },
         "title": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 80
         },
         "summary": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 160
         },
         "steps": {
           "minItems": 2,
@@ -402,7 +443,8 @@
           "type": "array",
           "items": {
             "type": "string",
-            "minLength": 1
+            "minLength": 1,
+            "maxLength": 110
           }
         }
       },
@@ -424,7 +466,8 @@
         },
         "speakerNotes": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 260
         },
         "template": {
           "type": "string",
@@ -432,11 +475,13 @@
         },
         "title": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 80
         },
         "summary": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 160
         },
         "steps": {
           "minItems": 1,
@@ -444,7 +489,8 @@
           "type": "array",
           "items": {
             "type": "string",
-            "minLength": 1
+            "minLength": 1,
+            "maxLength": 110
           }
         },
         "screenshotUrl": {
@@ -471,7 +517,8 @@
         },
         "speakerNotes": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 260
         },
         "template": {
           "type": "string",
@@ -479,23 +526,28 @@
         },
         "title": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 80
         },
         "subtitle": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 160
         },
         "nextSteps": {
           "default": [],
+          "maxItems": 5,
           "type": "array",
           "items": {
             "type": "string",
-            "minLength": 1
+            "minLength": 1,
+            "maxLength": 110
           }
         },
         "contact": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 80
         }
       },
       "required": [

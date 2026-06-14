@@ -164,17 +164,17 @@ export function createTwoColumnSlide(rawInput: TwoColumnTemplateInput): Slide {
     type: "two-column",
     title: input.title,
     layout: {
-      type: "freeform",
+      type: "two-column",
       gap: 32,
       padding: 80,
       columns: 2
     },
     blocks: [
-      heading(input.id, "title", input.title, 2, { x: 7, y: 8, width: 86, height: 12 }),
-      heading(input.id, "left_heading", input.left.heading, 3, { x: 8, y: 25, width: 38, height: 8 }),
-      columnContent(input.id, "left", input.left, { x: 8, y: 36, width: 38, height: 48 }),
-      heading(input.id, "right_heading", input.right.heading, 3, { x: 54, y: 25, width: 38, height: 8 }),
-      columnContent(input.id, "right", input.right, { x: 54, y: 36, width: 38, height: 48 })
+      heading(input.id, "title", input.title, 2),
+      heading(input.id, "left_heading", input.left.heading, 3),
+      heading(input.id, "right_heading", input.right.heading, 3),
+      columnContent(input.id, "left", input.left),
+      columnContent(input.id, "right", input.right)
     ],
     animations: fragmentAnimations([
       blockId(input.id, "left_heading"),
@@ -189,28 +189,21 @@ export function createTwoColumnSlide(rawInput: TwoColumnTemplateInput): Slide {
 
 export function createComparisonSlide(rawInput: ComparisonTemplateInput): Slide {
   const input = ComparisonTemplateInputSchema.parse(rawInput);
-  const width = input.items.length === 2 ? 38 : 27;
-  const startX = input.items.length === 2 ? 8 : 6;
-  const gap = input.items.length === 2 ? 8 : 4;
 
   return finalizeSlide({
     id: input.id,
     type: "comparison",
     title: input.title,
     layout: {
-      type: "freeform",
-      gap: 32,
-      padding: 80
+      type: "grid",
+      gap: 28,
+      padding: 80,
+      columns: input.items.length
     },
     blocks: [
-      heading(input.id, "title", input.title, 2, { x: 7, y: 8, width: 86, height: 12 }),
-      ...input.items.flatMap((item, index) => {
-        const x = startX + index * (width + gap);
-        return [
-          heading(input.id, `item_${index + 1}_heading`, item.label, 3, { x, y: 27, width, height: 8 }),
-          list(input.id, `item_${index + 1}_points`, item.points, false, { x, y: 39, width, height: 42 })
-        ];
-      })
+      heading(input.id, "title", input.title, 2),
+      ...input.items.map((item, index) => heading(input.id, `item_${index + 1}_heading`, item.label, 3)),
+      ...input.items.map((item, index) => list(input.id, `item_${index + 1}_points`, item.points, false))
     ],
     animations: fragmentAnimations(input.items.map((_, index) => blockId(input.id, `item_${index + 1}_points`))),
     notes: notes(input.speakerNotes),
@@ -377,22 +370,15 @@ export function createArchitectureSlide(rawInput: ArchitectureTemplateInput): Sl
 export function createProductDemoSlide(rawInput: ProductDemoTemplateInput): Slide {
   const input = ProductDemoTemplateInputSchema.parse(rawInput);
   const blocks = compactBlocks([
-    heading(input.id, "title", input.title, 2, { x: 7, y: 8, width: 86, height: 12 }),
+    heading(input.id, "title", input.title, 2),
     {
       id: blockId(input.id, "summary"),
       type: "paragraph",
       text: input.summary,
-      frame: frame({ x: 8, y: 25, width: input.screenshotUrl === undefined ? 84 : 38, height: 18 }),
       style: {
         colorToken: "color.text.muted"
       }
     },
-    list(input.id, "steps", input.steps, true, {
-      x: 8,
-      y: 48,
-      width: input.screenshotUrl === undefined ? 84 : 38,
-      height: 36
-    }),
     input.screenshotUrl === undefined
       ? undefined
       : {
@@ -402,9 +388,9 @@ export function createProductDemoSlide(rawInput: ProductDemoTemplateInput): Slid
             kind: "url",
             url: input.screenshotUrl
           },
-          alt: `${input.title} screenshot`,
-          frame: frame({ x: 54, y: 25, width: 38, height: 56 })
-        }
+          alt: `${input.title} screenshot`
+        },
+    list(input.id, "steps", input.steps, true)
   ]);
 
   return finalizeSlide({
@@ -412,9 +398,10 @@ export function createProductDemoSlide(rawInput: ProductDemoTemplateInput): Slid
     type: "product-demo",
     title: input.title,
     layout: {
-      type: "freeform",
+      type: input.screenshotUrl === undefined ? "stack" : "grid",
       gap: 28,
-      padding: 80
+      padding: 80,
+      columns: input.screenshotUrl === undefined ? undefined : 2
     },
     blocks,
     animations: fragmentAnimations(blocks.map((block) => block.id).filter((id) => id !== blockId(input.id, "title"))),
@@ -522,15 +509,13 @@ function heading(
   slideId: string,
   suffix: string,
   text: string,
-  level: 1 | 2 | 3,
-  blockFrame?: FrameInput
+  level: 1 | 2 | 3
 ): GeneratedBlock {
   return {
     id: blockId(slideId, suffix),
     type: "heading",
     level,
-    text,
-    frame: blockFrame === undefined ? undefined : frame(blockFrame)
+    text
   };
 }
 
@@ -538,43 +523,32 @@ function list(
   slideId: string,
   suffix: string,
   items: string[],
-  ordered: boolean,
-  blockFrame?: FrameInput
+  ordered: boolean
 ): GeneratedBlock {
   return {
     id: blockId(slideId, suffix),
     type: "list",
     ordered,
-    items,
-    frame: blockFrame === undefined ? undefined : frame(blockFrame)
+    items
   };
 }
 
 function columnContent(
   slideId: string,
   suffix: string,
-  column: TextColumn,
-  blockFrame: FrameInput
+  column: TextColumn
 ): GeneratedBlock {
   if (column.items.length > 0) {
-    return list(slideId, `${suffix}_content`, column.items, false, blockFrame);
+    return list(slideId, `${suffix}_content`, column.items, false);
   }
 
   return {
     id: blockId(slideId, `${suffix}_content`),
     type: "paragraph",
     text: column.body ?? column.heading,
-    frame: frame(blockFrame),
     style: {
       colorToken: "color.text.muted"
     }
-  };
-}
-
-function frame(input: FrameInput): Record<string, unknown> {
-  return {
-    ...input,
-    unit: "%"
   };
 }
 
@@ -605,10 +579,3 @@ function blockId(slideId: string, suffix: string): string {
 function compactBlocks(blocks: Array<GeneratedBlock | undefined>): GeneratedBlock[] {
   return blocks.filter((block): block is GeneratedBlock => block !== undefined);
 }
-
-type FrameInput = {
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-};

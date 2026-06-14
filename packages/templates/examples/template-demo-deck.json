@@ -173,7 +173,7 @@
       "type": "two-column",
       "title": "Two-Column Layout",
       "layout": {
-        "type": "freeform",
+        "type": "two-column",
         "gap": 32,
         "padding": 80,
         "columns": 2
@@ -181,39 +181,24 @@
       "blocks": [
         {
           "id": "two_column_template_title",
-          "frame": {
-            "x": 7,
-            "y": 8,
-            "width": 86,
-            "height": 12,
-            "unit": "%"
-          },
           "type": "heading",
           "text": "Two-Column Layout",
           "level": 2
         },
         {
           "id": "two_column_template_left_heading",
-          "frame": {
-            "x": 8,
-            "y": 25,
-            "width": 38,
-            "height": 8,
-            "unit": "%"
-          },
           "type": "heading",
           "text": "Input",
           "level": 3
         },
         {
+          "id": "two_column_template_right_heading",
+          "type": "heading",
+          "text": "Output",
+          "level": 3
+        },
+        {
           "id": "two_column_template_left_content",
-          "frame": {
-            "x": 8,
-            "y": 36,
-            "width": 38,
-            "height": 48,
-            "unit": "%"
-          },
           "type": "list",
           "ordered": false,
           "items": [
@@ -223,27 +208,7 @@
           ]
         },
         {
-          "id": "two_column_template_right_heading",
-          "frame": {
-            "x": 54,
-            "y": 25,
-            "width": 38,
-            "height": 8,
-            "unit": "%"
-          },
-          "type": "heading",
-          "text": "Output",
-          "level": 3
-        },
-        {
           "id": "two_column_template_right_content",
-          "frame": {
-            "x": 54,
-            "y": 36,
-            "width": 38,
-            "height": 48,
-            "unit": "%"
-          },
           "type": "list",
           "ordered": false,
           "items": [
@@ -289,46 +254,32 @@
       "type": "comparison",
       "title": "Comparison Template",
       "layout": {
-        "type": "freeform",
-        "gap": 32,
-        "padding": 80
+        "type": "grid",
+        "gap": 28,
+        "padding": 80,
+        "columns": 2
       },
       "blocks": [
         {
           "id": "comparison_template_title",
-          "frame": {
-            "x": 7,
-            "y": 8,
-            "width": 86,
-            "height": 12,
-            "unit": "%"
-          },
           "type": "heading",
           "text": "Comparison Template",
           "level": 2
         },
         {
           "id": "comparison_template_item_1_heading",
-          "frame": {
-            "x": 8,
-            "y": 27,
-            "width": 38,
-            "height": 8,
-            "unit": "%"
-          },
           "type": "heading",
           "text": "Hand-written JSON",
           "level": 3
         },
         {
+          "id": "comparison_template_item_2_heading",
+          "type": "heading",
+          "text": "Template-generated IR",
+          "level": 3
+        },
+        {
           "id": "comparison_template_item_1_points",
-          "frame": {
-            "x": 8,
-            "y": 39,
-            "width": 38,
-            "height": 42,
-            "unit": "%"
-          },
           "type": "list",
           "ordered": false,
           "items": [
@@ -338,27 +289,7 @@
           ]
         },
         {
-          "id": "comparison_template_item_2_heading",
-          "frame": {
-            "x": 54,
-            "y": 27,
-            "width": 38,
-            "height": 8,
-            "unit": "%"
-          },
-          "type": "heading",
-          "text": "Template-generated IR",
-          "level": 3
-        },
-        {
           "id": "comparison_template_item_2_points",
-          "frame": {
-            "x": 54,
-            "y": 39,
-            "width": 38,
-            "height": 42,
-            "unit": "%"
-          },
           "type": "list",
           "ordered": false,
           "items": [
@@ -595,33 +526,19 @@
       "type": "product-demo",
       "title": "Product Demo Flow",
       "layout": {
-        "type": "freeform",
+        "type": "stack",
         "gap": 28,
         "padding": 80
       },
       "blocks": [
         {
           "id": "product_demo_template_title",
-          "frame": {
-            "x": 7,
-            "y": 8,
-            "width": 86,
-            "height": 12,
-            "unit": "%"
-          },
           "type": "heading",
           "text": "Product Demo Flow",
           "level": 2
         },
         {
           "id": "product_demo_template_summary",
-          "frame": {
-            "x": 8,
-            "y": 25,
-            "width": 84,
-            "height": 18,
-            "unit": "%"
-          },
           "style": {
             "colorToken": "color.text.muted"
           },
@@ -630,13 +547,6 @@
         },
         {
           "id": "product_demo_template_steps",
-          "frame": {
-            "x": 8,
-            "y": 48,
-            "width": 84,
-            "height": 36,
-            "unit": "%"
-          },
           "type": "list",
           "ordered": true,
           "items": [
