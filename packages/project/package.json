@@ -1,0 +1,19 @@
+{
+  "name": "@pagestate/project",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@pagestate/ir": "0.1.0"
+  },
+  "devDependencies": {
+    "@pagestate/commands": "0.1.0",
+    "vitest": "^4.0.15"
+  }
+}
